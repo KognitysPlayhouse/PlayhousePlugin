@@ -1,0 +1,7 @@
+.vs/
+packages/EXILED.2.1.30/.signature.p7s
+packages/EXILED.2.1.30/EXILED.2.1.30.nupkg
+packages/
+PlayhousePlugin/bin/
+PlayhousePlugin/obj/
+.idea/.idea.PlayhousePlugin/.idea/

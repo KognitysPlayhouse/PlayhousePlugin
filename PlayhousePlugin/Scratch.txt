@@ -1,0 +1,949 @@
+﻿TODO:
+	- Finish premium hats
+	- Test with SCPs ping testers? (096 headshots etc etc etc)
+
+	- KLP's side 
+
+
+		public void OnRemoteAdminCommand(SendingRemoteAdminCommandEventArgs ev)
+		{
+			switch (ev.Name)
+			{
+				/*
+				case "refreshperms":
+					RefreshPerms = true;
+					break;*/
+
+				case "position1":
+					//Position1 = ev.Sender.Position;
+					break;
+
+				case "position2":
+					//Position2 = ev.Sender.Position;
+					break;
+
+				case "test":
+					List<RoleType> Roles = new List<RoleType>
+					{ RoleType.Scp049, RoleType.Scp096, RoleType.Scp106, RoleType.Scp173, RoleType.Scp93953, RoleType.Scp93989 };
+
+					if (true)
+					{
+						Roles.Add(RoleType.Scp079);
+					}
+
+					foreach(var thing in Roles)
+					{
+						Log.Info(thing);
+					}
+					break;
+
+				case "pauseround":
+					/*
+					if (roundPaused)
+					{
+						roundPaused = false;
+						ev.ReplyMessage = "Unpaused round";
+						Map.Broadcast(5, "Match will resume shortly!");
+						ev.Success = true;
+						ev.IsAllowed = false;
+
+						Timing.CallDelayed(6, () =>
+						{
+							startMatch(King, playerQueue[0]);
+						});
+					}
+					else
+					{
+						roundPaused = true;
+						ev.ReplyMessage = "Paused round";
+						Map.Broadcast(5, "Match Paused!");
+						ev.Success = true;
+						ev.IsAllowed = false;
+					}*/
+					break;
+
+				case "winnersoutput":
+					//Todo
+					break;
+
+				case "nospawn":
+					/*
+					if (playerQueue.Contains(ev.Sender))
+					{
+						playerQueue.Remove(ev.Sender);
+						ev.ReplyMessage = "Removed you from the player queue";
+						ev.Success = true;
+						ev.IsAllowed = false;
+					}
+					else
+					{
+						if (King == ev.Sender)
+						{
+							if (playerQueue.Count >= 1)
+							{
+								King = playerQueue[0];
+							}
+							else
+							{
+								King = null;
+								activeMatch = false;
+							}
+							playerQueue.Add(ev.Sender);
+							ev.ReplyMessage = "Removed from King";
+							ev.Success = true;
+							ev.IsAllowed = false;
+						}
+						else
+						{
+							playerQueue.Add(ev.Sender);
+							ev.ReplyMessage = "Added back to the player queue";
+							ev.Success = true;
+							ev.IsAllowed = false;
+						}
+					}*/
+					
+					break;
+
+				case "nerfwar1":
+					Timing.RunCoroutine(SillySundayEventHandler.NerfWar1());
+					ev.IsAllowed = false;
+					ev.ReplyMessage = "Starting Nerf War 1";
+					break;
+
+				case "nerfwar2":
+					Timing.RunCoroutine(SillySundayEventHandler.NerfWar2());
+					ev.IsAllowed = false;
+					ev.ReplyMessage = "Starting Nerf War 2";
+					break;
+
+				case "nerfwar3":
+					Timing.RunCoroutine(SillySundayEventHandler.NerfWar3());
+					ev.IsAllowed = false;
+					ev.ReplyMessage = "Starting Nerf War 3";
+					break;
+
+				case "nerfwar4":
+					Timing.RunCoroutine(SillySundayEventHandler.NerfWar4());
+					ev.IsAllowed = false;
+					ev.ReplyMessage = "Starting Nerf War 4";
+					break;
+
+				case "05rescue":
+					SillySundayEventHandler.ohfiverescuemode = true;
+					Timing.RunCoroutine(SillySundayEventHandler.OhFiveRescue());
+					ev.IsAllowed = false;
+					ev.ReplyMessage = "Starting 05 rescue!";
+					break;
+
+				case "instantrevive":
+					SillySundayEventHandler.instantRevive = true;
+					Timing.RunCoroutine(SillySundayEventHandler.InstantRevive());
+					ev.IsAllowed = false;
+					ev.ReplyMessage = "Starting Instant Revive!";
+					break;
+
+				case "randomrevive":
+					SillySundayEventHandler.randomrevive = true;
+					Timing.RunCoroutine(SillySundayEventHandler.RandomRevive());
+					ev.IsAllowed = false;
+					ev.ReplyMessage = "Starting Random Revive!";
+					break;
+
+				case "sugarrush":
+					SillySundayEventHandler.sugarrush = true;
+					Timing.RunCoroutine(SillySundayEventHandler.SugarRush());
+					ev.IsAllowed = false;
+					ev.ReplyMessage = "Starting Sugar Rush!";
+					break;
+
+				case "slaughterhouse":
+					SillySundayEventHandler.slaughterhouse = true;
+					Timing.RunCoroutine(SillySundayEventHandler.SlaughterHouse());
+					ev.IsAllowed = false;
+					ev.ReplyMessage = "Starting Slaugherhouse!";
+					break;
+
+				case "deathswap":
+					SillySundayEventHandler.deathswap = true;
+					Timing.RunCoroutine(SillySundayEventHandler.DeathSwap());
+					break;
+
+				case "train":
+					Respawn.SummonChaosInsurgencyVan(playMusic: false);
+					break;
+
+				case "helicopter":
+					Respawn.SummonNtfChopper();
+					break;
+
+				case "ragdollgun":
+					Player God = Player.Get(ev.Arguments[0]);
+					if (God == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						if (RagdollGun.Contains(God))
+						{
+							RagdollGun.Remove(God);
+						}
+						else
+						{
+							RagdollGun.Add(God);
+						}
+					}
+					break;
+
+				case "janitor":
+					Player Janitor = Player.Get(ev.Arguments[0]);
+					if (Janitor == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Janitor.Kill();
+						Janitor.Role.Type = RoleType.ClassD;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.CDP.MakeClassDJanitor(Janitor);
+						});
+					}
+					break;
+
+				case "bulldozer":
+					Player Bulldozer = Player.Get(ev.Arguments[0]);
+					if (Bulldozer == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Bulldozer.Kill();
+						Bulldozer.Role.Type = RoleType.ChaosConscript;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.CI.MakeChaosHeavy(Bulldozer);
+						});
+					}
+					break;
+
+				case "exterminator":
+					Player Exterminator = Player.Get(ev.Arguments[0]);
+					if (Exterminator == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Exterminator.Kill();
+						Exterminator.Role.Type = RoleType.ChaosConscript;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.CI.MakeChaosPoisonCarrier(Exterminator);
+						});
+					}
+					break;
+
+				case "guard":
+					Player Guard = Player.Get(ev.Arguments[0]);
+					if (Guard == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Guard.Kill();
+						Guard.Role.Type = RoleType.FacilityGuard;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							Guard.Broadcast(10, "<size=40><b><i>You have spawned as a <color=grey>Guard</color>!\nThis is a class with special abilities. To learn how to use them, press your console key (~ by default) or join our Discord at discord.gg/kognity</i></b></size>");
+							Guard.SendConsoleMessage("Name: Guard\n\nDescription: Follow the orders and use your ability to create more fighters!\n\nAbility1: Cuffed Class D Conversion\nAbility2: None\nAbility3: None\nAbility4: None\n\nPassive Buffs: None\nPassive Debuffs: None\n\nTo get the binding commands for the abilities type \".commands\"", "yellow");
+						});
+					}
+					break;
+
+				case "commander":
+					Player Commander = Player.Get(ev.Arguments[0]);
+					if (Commander == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Commander.Kill();
+						Commander.Role.Type = RoleType.NtfCaptain;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							Commander.Broadcast(10, "<size=40><b><i>You have spawned as a <color=navy>NTF Commander</color>\nThis is a class with special abilities. To learn how to use them, press your console key (~ by default) or join our Discord at discord.gg/kognity</i></b></size>");
+							Commander.SendConsoleMessage("Name: NTF Commander\n\nDescription: Promote Guards to Lieutenants, Escort Scientists and Detained Class D out of the facility all while containing the SCPs!\n\nAbility1: Guard Promotion\nAbility2: None\nAbility3: None\nAbility4: None\n\nPassive Buffs: None\nPassive Debuffs: None\n\nTo get the binding commands for the abilities type \".commands\"", "yellow");
+						});
+					}
+					break;
+
+				case "lieutenant":
+					Player Lieutenant = Player.Get(ev.Arguments[0]);
+					if (Lieutenant == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Lieutenant.Kill();
+						Lieutenant.Role.Type = RoleType.NtfSergeant;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							Lieutenant.Broadcast(10, "<size=40><b><i>You have spawned as a <color=navy>NTF Lieutenant</color>\nThis is a class with special abilities. To learn how to use them, press your console key (~ by default) or join our Discord at discord.gg/kognity</i></b></size>");
+							Lieutenant.SendConsoleMessage("Name: NTF Lieutenant\n\nDescription: Promote Guards to Lieutenants, Escort Scientists and Detained Class D out of the facility all while containing the SCPs!\n\nAbility1: Guard Promotion\nAbility2: None\nAbility3: None\nAbility4: None\n\nPassive Buffs: None\nPassive Debuffs: None\n\nTo get the binding commands for the abilities type \".commands\"", "yellow");
+						});
+					}
+					break;
+
+				case "hunter":
+					Player Hunter = Player.Get(ev.Arguments[0]);
+					if (Hunter == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Hunter.Kill();
+						Hunter.Role.Type = RoleType.ChaosConscript;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.CI.MakeChaosHunter(Hunter);
+						});
+					}
+					break;
+
+				case "medic":
+					Player Medic = Player.Get(ev.Arguments[0]);
+					if (Medic == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Medic.Kill();
+						Medic.Role.Type = RoleType.NtfPrivate;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.NTF.MakeMedic(Medic);
+						});
+					}
+
+					break;
+
+				case "sprinter":
+					Player speedyzombo = Player.Get(ev.Arguments[0]);
+					if (speedyzombo == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						speedyzombo.Kill();
+						speedyzombo.Role.Type = RoleType.Scp0492;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.SCP.SCP0492.SpeedyZombie(speedyzombo);
+						});
+					}
+
+					break;
+
+				case "boomer":
+					Player boomer = Player.Get(ev.Arguments[0]);
+					if (boomer == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						boomer.Kill();
+						boomer.Role.Type = RoleType.Scp0492;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.SCP.SCP0492.BoomerZombie(boomer);
+						});
+					}
+
+					break;
+
+				case "medicalstudent":
+					Player medicalstudent = Player.Get(ev.Arguments[0]);
+					if (medicalstudent == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						medicalstudent.Kill();
+						medicalstudent.Role.Type = RoleType.Scp0492;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.SCP.SCP0492.MedicalStudentZombie(medicalstudent);
+						});
+					}
+
+					break;
+
+				case "overdoser":
+					Player overdoser = Player.Get(ev.Arguments[0]);
+					if (overdoser == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						overdoser.Kill();
+						overdoser.Role.Type = RoleType.Scp0492;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.SCP.SCP0492.Overdoser(overdoser);
+						});
+					}
+
+					break;
+
+				case "heavy":
+					Player Heavy = Player.Get(ev.Arguments[0]);
+					if (Heavy == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Heavy.Kill();
+						Heavy.Role.Type = RoleType.NtfPrivate;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.NTF.MakeNTFHeavy(Heavy);
+						});
+					}
+
+					break;
+
+				case "engineer":
+					Player Engineer = Player.Get(ev.Arguments[0]);
+					if (Engineer == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Engineer.Kill();
+						Engineer.Role.Type = RoleType.NtfPrivate;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.NTF.MakeEngineer(Engineer);
+						});
+					}
+
+					break;
+
+				case "scout":
+					Player Scout = Player.Get(ev.Arguments[0]);
+					if (Scout == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Scout.Kill();
+						Scout.Role.Type = RoleType.NtfPrivate;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.NTF.MakeScout(Scout);
+						});
+					}
+
+					break;
+
+				case "demoman":
+					Player Demoman = Player.Get(ev.Arguments[0]);
+					if (Demoman == null)
+					{
+						ev.ReplyMessage = $"Player not found: {ev.Arguments[0]}";
+					}
+					else
+					{
+						Demoman.Kill();
+						Demoman.Role.Type = RoleType.NtfPrivate;
+						Timing.CallDelayed(0.1f, () =>
+						{
+							CustomClass.NTF.MakeNTFDemo(Demoman);
+						});
+					}
+
+					break;
+
+				case "sillysunday":
+					SillySunday = true;
+					break;
+
+				case "xp":
+					ev.Sender.ReferenceHub.scp079PlayerScript.AddExperience(10000000);
+					break;
+
+				case "fast":
+					ev.Sender.ChangeRunningSpeed(0.5f);
+					ev.Sender.ChangeWalkingSpeed(1.2f);
+					break;
+
+				case "flash":
+					MirrorExtensions.SendFakeSyncVar(ev.Sender, ServerConfigSynchronizer.Singleton.netIdentity, typeof(ServerConfigSynchronizer), nameof(ServerConfigSynchronizer.Singleton.NetworkHumanSprintSpeedMultiplier), float.Parse(ev.Arguments[0]));
+					//ev.Sender.SendFakeSyncVar(ServerConfigSynchronizer.Singleton.netIdentity, typeof(ServerConfigSynchronizer), nameof(ServerConfigSynchronizer.Singleton.NetworkHumanSprintSpeedMultiplier), 10f);
+					ev.Sender.ChangeWalkingSpeed(1f);
+					break;
+
+				case "slow":
+					ev.Sender.ChangeRunningSpeed(0.65f);
+					ev.Sender.ChangeWalkingSpeed(1.6f);
+					break;
+
+				case "reset":
+					MirrorExtensions.ResyncSyncVar(ServerConfigSynchronizer.Singleton.netIdentity, typeof(ServerConfigSynchronizer), nameof(ServerConfigSynchronizer.Singleton.NetworkHumanSprintSpeedMultiplier));
+					MirrorExtensions.ResyncSyncVar(ServerConfigSynchronizer.Singleton.netIdentity, typeof(ServerConfigSynchronizer), nameof(ServerConfigSynchronizer.Singleton.NetworkHumanWalkSpeedMultiplier));
+					break;
+
+				case "itemart1":
+					if (Server.Port == 7778 || ev.Sender.RawUserId == "kognity")
+					{
+						for (int x = 0; x < 50; x++)
+						{
+							Pickup pickup = Exiled.API.Extensions.Item.Spawn(ItemType.SCP018, 0, ev.Sender.Position);
+
+							Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+							ArtItems.Add(pickup);
+						}
+						Timing.RunCoroutine(ItemArt(ev.Sender));
+					}
+					break;
+
+				case "itemart2":
+					if (Server.Port == 7778 || ev.Sender.RawUserId == "kognity")
+					{
+						for (int x = 0; x < 25; x++)
+						{
+							Pickup pickup = Exiled.API.Extensions.Item.Spawn(ItemType.SCP018, 0, ev.Sender.Position);
+
+							Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+							ArtItems2.Add(pickup);
+						}
+						Timing.RunCoroutine(ItemArtCircle(ev.Sender));
+					}
+					break;
+
+				case "itemart3":
+					if (Server.Port == 7778 || ev.Sender.RawUserId == "kognity")
+					{
+						for (int x = 0; x < 25; x++)
+						{
+							Pickup pickup = Exiled.API.Extensions.Item.Spawn(ItemType.SCP018, 0, ev.Sender.Position);
+
+							Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+							ArtItems3.Add(pickup);
+						}
+						Timing.RunCoroutine(ItemArtHelix(ev.Sender));
+					}
+					break;
+
+				case "itemart4":
+					if (Server.Port == 7778 || ev.Sender.RawUserId == "kognity")
+					{
+						for (int x = 0; x < 50; x++)
+						{
+							Pickup pickup = Exiled.API.Extensions.Item.Spawn(ItemType.SCP018, 0, ev.Sender.Position);
+
+							Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+							ArtItems4.Add(pickup);
+						}
+						Timing.RunCoroutine(ItemArtCircleWavy(ev.Sender));
+					}
+					break;
+
+				case "hattest":
+					if (Server.Port == 7778 || ev.Sender.RawUserId == "kognity")
+					{
+						Player Ply = ev.Sender;
+						if(ev.Arguments.Count != 0)
+							Ply = Player.Get(ev.Arguments[0]);
+						List<Pickup> HatItems = new List<Pickup> { };
+						for (int x = 0; x < 8; x++)
+						{
+							Pickup pickup = Exiled.API.Extensions.Item.Spawn(ItemType.SCP018, 0, Ply.Position);
+							GameObject gameObject = pickup.gameObject;
+							gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+							NetworkServer.UnSpawn(gameObject);
+							NetworkServer.Spawn(pickup.gameObject);
+
+							Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+
+							HatItems.Add(pickup);
+						}
+						Timing.RunCoroutine(HatCircle(Ply, HatItems));
+					}
+					break;
+
+				case "hattest2":
+					if (Server.Port == 7778 || ev.Sender.RawUserId == "kognity")
+					{
+						Player Ply = ev.Sender;
+						if (ev.Arguments.Count != 0)
+							Ply = Player.Get(ev.Arguments[0]);
+						List<Pickup> HatItems = new List<Pickup> { };
+						for (int x = 0; x < 8; x++)
+						{
+							Pickup pickup = Exiled.API.Extensions.Item.Spawn(ItemType.Flashlight, 0, Ply.Position);
+							GameObject gameObject = pickup.gameObject;
+							gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+							NetworkServer.UnSpawn(gameObject);
+							NetworkServer.Spawn(pickup.gameObject);
+
+							Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+
+							HatItems.Add(pickup);
+						}
+						Timing.RunCoroutine(HatCircleFlashlight(Ply, HatItems));
+					}
+					break;
+
+				case "hattest3":
+					if (Server.Port == 7778 || ev.Sender.RawUserId == "kognity")
+					{
+						Player Ply = ev.Sender;
+						if (ev.Arguments.Count != 0)
+							Ply = Player.Get(ev.Arguments[0]);
+						List<Pickup> HatItems = new List<Pickup> { };
+						for (int x = 0; x < 8; x++)
+						{
+							Pickup pickup = Exiled.API.Extensions.Item.Spawn(ItemType.Flashlight, 0, Ply.Position);
+							GameObject gameObject = pickup.gameObject;
+							gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+							NetworkServer.UnSpawn(gameObject);
+							NetworkServer.Spawn(pickup.gameObject);
+
+							Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+
+							HatItems.Add(pickup);
+						}
+						Timing.RunCoroutine(HatCircleFlashlightDown(Ply, HatItems));
+					}
+					break;
+
+				case "hattest4":
+					if (Server.Port == 7778 || ev.Sender.RawUserId == "kognity")
+					{
+						Player Ply = ev.Sender;
+						if (ev.Arguments.Count != 0)
+							Ply = Player.Get(ev.Arguments[0]);
+						List<Pickup> HatItems = new List<Pickup> { };
+						for (int x = 0; x < 8; x++)
+						{
+							Pickup pickup = Exiled.API.Extensions.Item.Spawn(ItemType.SCP018, 0, Ply.Position);
+							GameObject gameObject = pickup.gameObject;
+							gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+							NetworkServer.UnSpawn(gameObject);
+							NetworkServer.Spawn(pickup.gameObject);
+
+							Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+
+							HatItems.Add(pickup);
+						}
+						Timing.RunCoroutine(HatTestPattern2(Ply, HatItems));
+					}
+					break;
+
+				case "flowerart":
+					if (Server.Port == 7778 || ev.Sender.RawUserId == "kognity")
+					{
+						List<List<Pickup>> Circles = new List <List<Pickup>> { };
+						for (int x = 0; x < 30; x++)
+						{
+							List<Pickup> Circle = new List<Pickup>();
+
+							for (int i = 0; i < 4; i++) {
+								Pickup pickup = Exiled.API.Extensions.Item.Spawn(ItemType.SCP018, 0, ev.Sender.Position);
+								GameObject gameObject = pickup.gameObject;
+								gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
+								NetworkServer.UnSpawn(gameObject);
+								NetworkServer.Spawn(pickup.gameObject);
+
+								Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+								Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+								foreach (Collider thing in collider)
+								{
+									thing.enabled = false;
+								}
+								if (rigidBody != null)
+								{
+									rigidBody.useGravity = false;
+									rigidBody.detectCollisions = false;
+								}
+								Circle.Add(pickup);
+							}
+
+							Circles.Add(Circle);
+						}
+						Timing.RunCoroutine(FlowerArt(ev.Sender, Circles));
+					}
+					break;
+
+				case "flowerart2":
+					if (Server.Port == 7778 || ev.Sender.RawUserId == "kognity")
+					{
+						List<List<Pickup>> Branches = new List<List<Pickup>> { };
+						for (int x = 0; x < 4; x++)
+						{
+							List<Pickup> Branch = new List<Pickup>();
+
+							for (int i = 0; i < 10; i++)
+							{
+								Pickup pickup = Exiled.API.Extensions.Item.Spawn(ItemType.SCP018, 0, ev.Sender.Position);
+								GameObject gameObject = pickup.gameObject;
+								gameObject.transform.localScale = new Vector3(2f, 2f, 2f);
+								NetworkServer.UnSpawn(gameObject);
+								NetworkServer.Spawn(pickup.gameObject);
+
+								Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+								Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+								foreach (Collider thing in collider)
+								{
+									thing.enabled = false;
+								}
+								if (rigidBody != null)
+								{
+									rigidBody.useGravity = false;
+									rigidBody.detectCollisions = false;
+								}
+								Branch.Add(pickup);
+							}
+
+							Branches.Add(Branch);
+						}
+						Timing.RunCoroutine(FlowerArt2(ev.Sender, Branches));
+					}
+					break;
+
+				case "ragdollart":
+					if (Server.Port == 7778)
+					{
+						for (int x = 0; x < 50; x++)
+						{
+							Ragdoll pickup = Map.SpawnRagdoll(victim: ev.Sender, position:ev.Sender.Position, deathCause:DamageTypes.Bleeding, rotation:ev.Sender.GameObject.transform.rotation);
+
+							Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+							ArtRagdolls.Add(pickup);
+						}
+						Timing.RunCoroutine(RagdollArt(ev.Sender));
+					}
+					break;
+
+				case "ragdollart2":
+					if (Server.Port == 7778)
+					{
+						for (int x = 0; x < 50; x++)
+						{
+							Ragdoll pickup = Map.SpawnRagdoll(victim: ev.Sender, position: ev.Sender.Position, deathCause: DamageTypes.Bleeding, rotation: ev.Sender.GameObject.transform.rotation);
+
+							Rigidbody rigidBody = pickup.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = pickup.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+							ArtRagdolls2.Add(pickup);
+						}
+						Timing.RunCoroutine(RagdollArt2(ev.Sender));
+					}
+					break;
+
+				case "letterm":
+					if (Server.Port == 7778)
+					{
+						for (int x = 0; x < LettersCoordinates.LetterM.Count; x++)
+						{
+							Pickup item = Exiled.API.Extensions.Item.Spawn(ItemType.SCP018, 0, ev.Sender.Position);
+							GameObject gameObject = item.gameObject;
+							gameObject.transform.localScale = new Vector3(5f, 5f, 5f);
+							NetworkServer.UnSpawn(gameObject);
+							NetworkServer.Spawn(item.gameObject);
+
+							Rigidbody rigidBody = item.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = item.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+							LetterM.Add(item);
+						}
+						Timing.RunCoroutine(LetterMArt(ev.Sender));
+					}
+					break;
+
+				case "lettert":
+					if (Server.Port == 7778)
+					{
+						for (int x = 0; x < LettersCoordinates.LetterT.Count; x++)
+						{
+							Pickup item = Exiled.API.Extensions.Item.Spawn(ItemType.SCP018, 0, ev.Sender.Position);
+							GameObject gameObject = item.gameObject;
+							gameObject.transform.localScale = new Vector3(5f, 5f, 5f);
+							NetworkServer.UnSpawn(gameObject);
+							NetworkServer.Spawn(item.gameObject);
+
+							Rigidbody rigidBody = item.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = item.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+							LetterT.Add(item);
+						}
+						Timing.RunCoroutine(LetterTArt(ev.Sender));
+					}
+					break;
+
+				case "letterf":
+					if (Server.Port == 7778)
+					{
+						for (int x = 0; x < LettersCoordinates.LetterF.Count; x++)
+						{
+							Pickup item = Exiled.API.Extensions.Item.Spawn(ItemType.SCP018, 0, ev.Sender.Position);
+							GameObject gameObject = item.gameObject;
+							gameObject.transform.localScale = new Vector3(5f, 5f, 5f);
+							NetworkServer.UnSpawn(gameObject);
+							NetworkServer.Spawn(item.gameObject);
+
+							Rigidbody rigidBody = item.gameObject.GetComponent<Rigidbody>();
+							Collider[] collider = item.gameObject.GetComponents<Collider>();
+							foreach (Collider thing in collider)
+							{
+								thing.enabled = false;
+							}
+							if (rigidBody != null)
+							{
+								rigidBody.useGravity = false;
+								rigidBody.detectCollisions = false;
+							}
+							LetterF.Add(item);
+						}
+						Timing.RunCoroutine(LetterFArt(ev.Sender));
+					}
+					break;
+
+				case "lettermtf":
+					if (Server.Port == 7778)
+					{
+						Timing.RunCoroutine(MTFLetter(ev.Sender.Position));
+					}
+					break;
+			}
+		}

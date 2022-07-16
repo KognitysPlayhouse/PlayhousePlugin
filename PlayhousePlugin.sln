@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayhousePlugin", "PlayhousePlugin\PlayhousePlugin.csproj", "{BAD56544-4EC8-4FF6-AEC7-A0B8CBA53F4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kognity.DB", "..\..\..\..\website-backend\Kognity.DB\Kognity.DB.csproj", "{47143FCB-C12A-4970-9500-35F24C0C1D71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAD56544-4EC8-4FF6-AEC7-A0B8CBA53F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAD56544-4EC8-4FF6-AEC7-A0B8CBA53F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAD56544-4EC8-4FF6-AEC7-A0B8CBA53F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAD56544-4EC8-4FF6-AEC7-A0B8CBA53F4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47143FCB-C12A-4970-9500-35F24C0C1D71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47143FCB-C12A-4970-9500-35F24C0C1D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47143FCB-C12A-4970-9500-35F24C0C1D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47143FCB-C12A-4970-9500-35F24C0C1D71}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C3BC9D6-AB9D-4B81-A4F7-38415F8F1E00}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BAD56544-4EC8-4FF6-AEC7-A0B8CBA53F4D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PlayhousePlugin</RootNamespace>
+    <AssemblyName>PlayhousePlugin</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony, Version=2.0.4.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Accessibility" />
+    <Reference Include="Accessibility, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\Accessibility.dll</HintPath>
+    </Reference>
+    <Reference Include="AmplifyBloom">
+      <HintPath>..\..\..\references\AmplifyBloom.dll</HintPath>
+    </Reference>
+    <Reference Include="AmplifyBloom, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\AmplifyBloom.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\References\Assembly-CSharp_publicized.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\references\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto">
+      <HintPath>..\..\..\references\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.8.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\..\..\..\References\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="CloudflareSolverRe">
+      <HintPath>..\..\..\references\CloudflareSolverRe.dll</HintPath>
+    </Reference>
+    <Reference Include="CloudflareSolverRe, Version=1.0.6.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\CloudflareSolverRe.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EXILED.5.2.2\lib\net472\CommandSystem.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DissonanceVoip, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\DissonanceVoip.dll</HintPath>
+    </Reference>
+    <Reference Include="Exiled.API, Version=5.2.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.API.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Exiled.Bootstrap, Version=5.2.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.Bootstrap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Exiled.CreditTags, Version=5.2.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.CreditTags.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Exiled.CustomItems, Version=5.2.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.CustomItems.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Exiled.CustomRoles, Version=5.2.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.CustomRoles.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Exiled.Events, Version=5.2.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.Events.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Exiled.Loader, Version=5.2.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.Loader.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Exiled.Permissions, Version=5.2.2.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.Permissions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Exiled.Updater, Version=3.1.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EXILED.5.2.2\lib\net472\Exiled.Updater.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks.Posix, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\Facepunch.Steamworks.Posix.dll</HintPath>
+    </Reference>
+    <Reference Include="MapEditorReborn, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\MapEditorReborn.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirror">
+      <HintPath>..\..\..\references\Mirror.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirror, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\Mirror.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirror.Components">
+      <HintPath>..\..\..\references\Mirror.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Mirror.Components, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\Mirror.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <HintPath>..\..\..\references\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.Sqlite, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <HintPath>..\..\..\..\References\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Nat">
+      <HintPath>..\..\..\references\Mono.Nat.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Nat, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\Mono.Nat.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\references\Mono.Posix.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <HintPath>..\..\..\..\References\Mono.Posix.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\..\..\references\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <HintPath>..\..\..\..\References\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.WebBrowser">
+      <HintPath>..\..\..\references\Mono.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.WebBrowser, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <HintPath>..\..\..\..\References\Mono.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\..\..\..\References\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="NorthwoodLib, Version=1.2.1.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\EXILED.5.2.2\lib\net472\NorthwoodLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Novell.Directory.Ldap, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
+      <HintPath>..\..\..\..\References\Novell.Directory.Ldap.dll</HintPath>
+    </Reference>
+    <Reference Include="sc.posteffects.runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\sc.posteffects.runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\..\..\..\References\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections, Version=4.0.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\..\..\..\References\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Debug, Version=4.0.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Diagnostics.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.StackTrace, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Diagnostics.StackTrace.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.DirectoryServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Design, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Drawing.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="System.EnterpriseServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.EnterpriseServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization, Version=4.0.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Globalization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Globalization.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.IO.Compression.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\..\..\..\References\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Primitives, Version=4.0.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Net.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Runtime.Serialization.Formatters.Soap.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Xml, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Runtime.Serialization.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Internals, Version=0.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.ServiceModel.Internals.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Text.RegularExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading, Version=4.0.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks, Version=4.0.10.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.Transactions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\..\..\..\References\System.Web.ApplicationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <HintPath>..\..\..\..\References\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XDocument, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <HintPath>..\..\..\..\References\System.Xml.XPath.XDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\references\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\references\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\references\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.TextCoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UNETModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp, Version=1.0.2.6839, Culture=neutral, PublicKeyToken=5660b08a1845a91e">
+      <HintPath>..\..\..\..\References\websocket-sharp.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.unity, Version=0.16.4.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\..\References\zxing.unity.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Client Commands\BossDeathCommand.cs" />
+    <Compile Include="Commands\Client Commands\ClearBroadcast.cs" />
+    <Compile Include="Commands\Client Commands\ContentGun.cs" />
+    <Compile Include="Commands\Client Commands\Custom Class Active Abilities\Ability1.cs" />
+    <Compile Include="Commands\Client Commands\Custom Class Active Abilities\Ability2.cs" />
+    <Compile Include="Commands\Client Commands\Custom Class Active Abilities\Ability3.cs" />
+    <Compile Include="Commands\Client Commands\Custom Class Active Abilities\Ability4.cs" />
+    <Compile Include="Commands\Client Commands\Custom Class Active Abilities\ActivateAbility.cs" />
+    <Compile Include="Commands\Client Commands\Custom Class Active Abilities\ChangeAbility.cs" />
+    <Compile Include="Commands\Client Commands\Deathmatch Server\EnterQueue.cs" />
+    <Compile Include="Commands\Client Commands\Deathmatch Server\LeaveQueue.cs" />
+    <Compile Include="Commands\Client Commands\DeleteData.cs" />
+    <Compile Include="Commands\Client Commands\Discord.cs" />
+    <Compile Include="Commands\Client Commands\HatsCommand.cs" />
+    <Compile Include="Commands\Client Commands\RoundStats.cs" />
+    <Compile Include="Commands\Client Commands\SCPSwap.cs" />
+    <Compile Include="Commands\Client Commands\Shit.cs" />
+    <Compile Include="Commands\Client Commands\SprayCommand.cs" />
+    <Compile Include="Commands\Client Commands\Vaporize.cs" />
+    <Compile Include="Commands\Remote Admin Commands\Cleanup.cs" />
+    <Compile Include="Commands\Remote Admin Commands\CustomClassSpawnCommand.cs" />
+    <Compile Include="Commands\Remote Admin Commands\DummyCommand.cs" />
+    <Compile Include="Commands\Remote Admin Commands\DisableBulletHoles.cs" />
+    <Compile Include="Commands\Remote Admin Commands\ForceReload.cs" />
+    <Compile Include="Commands\Client Commands\PetsCommand.cs" />
+    <Compile Include="Commands\Client Commands\SCPList.cs" />
+    <Compile Include="Commands\Client Commands\SuicideCommand.cs" />
+    <Compile Include="Commands\Client Commands\ZFE.cs" />
+    <Compile Include="Commands\Client Commands\CommandsHelp.cs" />
+    <Compile Include="Commands\Remote Admin Commands\ContentGunClear.cs" />
+    <Compile Include="Commands\Remote Admin Commands\Frametime.cs" />
+    <Compile Include="Commands\Remote Admin Commands\InfiniteDropCommand.cs" />
+    <Compile Include="Commands\Remote Admin Commands\Item.cs" />
+    <Compile Include="Commands\Remote Admin Commands\Jail.cs" />
+    <Compile Include="Commands\Remote Admin Commands\Location.cs" />
+    <Compile Include="Commands\Remote Admin Commands\Mini Boss.cs" />
+    <Compile Include="Commands\Remote Admin Commands\PlayhousePluginCommand.cs" />
+    <Compile Include="Commands\Remote Admin Commands\Position.cs" />
+    <Compile Include="Commands\Remote Admin Commands\queueView.cs" />
+    <Compile Include="Commands\Remote Admin Commands\RadioToggle.cs" />
+    <Compile Include="Commands\Remote Admin Commands\SillySundayCommand.cs" />
+    <Compile Include="Commands\Remote Admin Commands\SizeCommand.cs" />
+    <Compile Include="Commands\Remote Admin Commands\Ghost.cs" />
+    <Compile Include="Commands\Remote Admin Commands\spawnMovingTarget.cs" />
+    <Compile Include="Commands\Remote Admin Commands\SundayEventsCommand.cs" />
+    <Compile Include="Commands\Remote Admin Commands\TeleportX.cs" />
+    <Compile Include="Commands\Remote Admin Commands\Tutorial.cs" />
+    <Compile Include="Components\LightBlink.cs" />
+    <Compile Include="Components\ObjectivePointComponent.cs" />
+    <Compile Include="Components\PlayhousePluginComponent.cs" />
+    <Compile Include="Components\RainbowRoom.cs" />
+    <Compile Include="Components\RainbowTagController.cs" />
+    <Compile Include="Controllers\BoxController.cs" />
+    <Compile Include="Controllers\ElevatorController.cs" />
+    <Compile Include="Controllers\GateAReworkController.cs" />
+    <Compile Include="Controllers\GateBReworkController.cs" />
+    <Compile Include="Controllers\ObjectivePointController.cs" />
+    <Compile Include="Controllers\RecyclingBinController.cs" />
+    <Compile Include="Controllers\VendingMachineController.cs" />
+    <Compile Include="Cosmetics\PetFollow.cs" />
+    <Compile Include="CustomClass\Abilities\CI Abilities\Chaos Engineer Buildings\ChaosDispenser.cs" />
+    <Compile Include="CustomClass\Abilities\CI Abilities\Chaos Engineer Buildings\ChaosSpeedpad.cs" />
+    <Compile Include="CustomClass\Abilities\CI Abilities\Chaos Engineer Buildings\ChaosTeleporterEntrance.cs" />
+    <Compile Include="CustomClass\Abilities\CI Abilities\Chaos Engineer Buildings\ChaosTeleporterExit.cs" />
+    <Compile Include="CustomClass\Abilities\CI Abilities\ChaosMedicRevive.cs" />
+    <Compile Include="CustomClass\Abilities\CI Abilities\GasGrenade.cs" />
+    <Compile Include="CustomClass\Abilities\CI Abilities\TonicShot.cs" />
+    <Compile Include="CustomClass\Abilities\CI Abilities\InfraredVision.cs" />
+    <Compile Include="CustomClass\Abilities\CI Abilities\MiniDispenser.cs" />
+    <Compile Include="CustomClass\Abilities\CI Abilities\MorphineShot.cs" />
+    <Compile Include="CustomClass\Abilities\CI Abilities\RandomizerTPChaos.cs" />
+    <Compile Include="CustomClass\Abilities\Class D Abilities\JanitorCleanup.cs" />
+    <Compile Include="CustomClass\Abilities\NTF Abilities\Engineer's Buildings\Dispenser.cs" />
+    <Compile Include="CustomClass\Abilities\NTF Abilities\Engineer's Buildings\Speedpad.cs" />
+    <Compile Include="CustomClass\Abilities\NTF Abilities\Engineer's Buildings\TeleporterEntrance.cs" />
+    <Compile Include="CustomClass\Abilities\NTF Abilities\Engineer's Buildings\TeleporterExit.cs" />
+    <Compile Include="CustomClass\Abilities\NTF Abilities\HotBullets.cs" />
+    <Compile Include="CustomClass\Abilities\NTF Abilities\MiniDispenserNTF.cs" />
+    <Compile Include="CustomClass\Abilities\NTF Abilities\NTFGasGrenade.cs" />
+    <Compile Include="CustomClass\Abilities\NTF Abilities\NTFMedicRevive.cs" />
+    <Compile Include="CustomClass\Abilities\NTF Abilities\RandomizerTPNTF.cs" />
+    <Compile Include="CustomClass\Abilities\PassiveAbilities.cs" />
+    <Compile Include="CustomClass\Abilities\SCP Abilities\079\GeneratorOverride.cs" />
+    <Compile Include="CustomClass\Abilities\SCP Abilities\079\Neurotoxin.cs" />
+    <Compile Include="CustomClass\Abilities\SCP Abilities\079\Stalk.cs" />
+    <Compile Include="CustomClass\Abilities\SCP Abilities\079\WarheadJam.cs" />
+    <Compile Include="CustomClass\Abilities\SCP Abilities\SCPHeal.cs" />
+    <Compile Include="CustomClass\Abilities\SCP Abilities\Vanish.cs" />
+    <Compile Include="CustomClass\Abilities\SCP Abilities\Zombies\DrugDose.cs" />
+    <Compile Include="CustomClass\Abilities\SCP Abilities\Zombies\OverclockToggle.cs" />
+    <Compile Include="CustomClass\Abilities\SCP Abilities\Zombies\Sneeze.cs" />
+    <Compile Include="CustomClass\Abilities\SCP Abilities\Zombies\ZombieRevive.cs" />
+    <Compile Include="CustomClass\AbilityBase.cs" />
+    <Compile Include="CustomClass\CDP\CDP.cs" />
+    <Compile Include="CustomClass\CDP\ClassDChad.cs" />
+    <Compile Include="CustomClass\CDP\ClassDJanitor.cs" />
+    <Compile Include="CustomClass\CI\Alter Egos\ChaosContainmentSpecialist.cs" />
+    <Compile Include="CustomClass\CI\Alter Egos\ChaosDemoman.cs" />
+    <Compile Include="CustomClass\CI\Alter Egos\ChaosEngineer.cs" />
+    <Compile Include="CustomClass\CI\Alter Egos\ChaosHeavy.cs" />
+    <Compile Include="CustomClass\CI\Alter Egos\ChaosManager.cs" />
+    <Compile Include="CustomClass\CI\Alter Egos\ChaosMedic.cs" />
+    <Compile Include="CustomClass\CI\Alter Egos\ChaosScout.cs" />
+    <Compile Include="CustomClass\CI\ChaosBulldozer.cs" />
+    <Compile Include="CustomClass\CI\ChaosDemolitionsExpert.cs" />
+    <Compile Include="CustomClass\CI\ChaosHeretic.cs" />
+    <Compile Include="CustomClass\CI\ChaosHunter.cs" />
+    <Compile Include="CustomClass\CI\ChaosMachinist.cs" />
+    <Compile Include="CustomClass\CI\CI.cs" />
+    <Compile Include="CustomClass\CI\ChaosExterminator.cs" />
+    <Compile Include="CustomClass\CooldownAbilityBase.cs" />
+    <Compile Include="CustomClass\CustomClassBase.cs" />
+    <Compile Include="CustomClass\CustomClassManager.cs" />
+    <Compile Include="CustomClass\FGD\FGD.cs" />
+    <Compile Include="CustomClass\FGD\GuardManager.cs" />
+    <Compile Include="CustomClass\FGD\SeniorGuard.cs" />
+    <Compile Include="CustomClass\NonCooldownAbilityBase.cs" />
+    <Compile Include="CustomClass\NTF\Alter Egos\NTFBulldozer.cs" />
+    <Compile Include="CustomClass\NTF\Alter Egos\NTFDemolitionsExpert.cs" />
+    <Compile Include="CustomClass\NTF\Alter Egos\NTFExterminator.cs" />
+    <Compile Include="CustomClass\NTF\Alter Egos\NTFHeretic.cs" />
+    <Compile Include="CustomClass\NTF\Alter Egos\NTFHunter.cs" />
+    <Compile Include="CustomClass\NTF\Alter Egos\NTFMachinist.cs" />
+    <Compile Include="CustomClass\NTF\Alter Egos\NTFManager.cs" />
+    <Compile Include="CustomClass\NTF\NTF.cs" />
+    <Compile Include="CustomClass\NTF\NTFCaptain.cs" />
+    <Compile Include="CustomClass\NTF\NTFContainmentSpecialist.cs" />
+    <Compile Include="CustomClass\NTF\NTFDemoman.cs" />
+    <Compile Include="CustomClass\NTF\NTFEngineer.cs" />
+    <Compile Include="CustomClass\NTF\NTFHeavy.cs" />
+    <Compile Include="CustomClass\NTF\NTFMedic.cs" />
+    <Compile Include="CustomClass\NTF\NTFScout.cs" />
+    <Compile Include="CustomClass\NTF\NTFSergeant.cs" />
+    <Compile Include="CustomClass\RSC\MajorScientistJr.cs" />
+    <Compile Include="CustomClass\RSC\RSC.cs" />
+    <Compile Include="CustomClass\SCPs\SCP0492.cs" />
+    <Compile Include="CustomClass\SCPs\SCP049CustomClass.cs" />
+    <Compile Include="CustomClass\SCPs\SCP079CustomClass.cs" />
+    <Compile Include="CustomClass\SCPs\SCP096CustomClass.cs" />
+    <Compile Include="CustomClass\SCPs\SCP106CustomClass.cs" />
+    <Compile Include="CustomClass\SCPs\SCP173CustomClass.cs" />
+    <Compile Include="CustomClass\SCPs\SCP93953CustomClass.cs" />
+    <Compile Include="CustomClass\SCPs\SCP93989CustomClass.cs" />
+    <Compile Include="CustomClass\SCPs\Zombie Custom Classes\Boomer.cs" />
+    <Compile Include="CustomClass\SCPs\Zombie Custom Classes\MedicalStudent.cs" />
+    <Compile Include="CustomClass\SCPs\Zombie Custom Classes\Overclocker.cs" />
+    <Compile Include="CustomClass\SCPs\Zombie Custom Classes\Overdoser.cs" />
+    <Compile Include="CustomClass\SCPs\Zombie Custom Classes\Sprinter.cs" />
+    <Compile Include="CustomGameMode\BreakoutBlitz.cs" />
+    <Compile Include="DeathmatchServer\DeathmatchServer.cs" />
+    <Compile Include="Misc\Containment106ObjectiveController.cs" />
+    <Compile Include="Misc\Cock.cs" />
+    <Compile Include="Commands\Remote Admin Commands\InfAmmo\All.cs" />
+    <Compile Include="Commands\Remote Admin Commands\InfAmmo\Clear.cs" />
+    <Compile Include="Misc\CommonUtilsStuff.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Cosmetics\Hats.cs" />
+    <Compile Include="Misc\Sprays.cs" />
+    <Compile Include="Patches\CustomDamageTypePatches.cs" />
+    <Compile Include="Misc\CustomItemSpawning.cs" />
+    <Compile Include="Patches\Profiler.cs" />
+    <Compile Include="SillySunday\SillySundayEventHandler.cs" />
+    <Compile Include="SillySunday\SillySundayInfectionController.cs" />
+    <Compile Include="SillySunday\SillySundayNames.cs" />
+    <Compile Include="Utils and Consts\CustomNotificationMessages.cs" />
+    <Compile Include="EventHandlers.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Commands\Remote Admin Commands\InfAmmo\Give.cs" />
+    <Compile Include="Commands\Remote Admin Commands\InfAmmo\InfAmmo.cs" />
+    <Compile Include="Commands\Remote Admin Commands\InfAmmo\List.cs" />
+    <Compile Include="Components\InfiniteAmmoComponent.cs" />
+    <Compile Include="Utils and Consts\LettersCoordinates.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Patches\Patches.cs" />
+    <Compile Include="Utils and Consts\SCP939Consts.cs" />
+    <Compile Include="Utils and Consts\UtilityMethods.cs" />
+    <Compile Include="Utils and Consts\Utils.cs" />
+    <Compile Include="Webhooks\Message.cs" />
+    <Compile Include="Webhooks\Translations.cs" />
+    <Compile Include="Webhooks\WebhookEventHandler.cs" />
+    <Compile Include="Webhooks\WebhookUrls.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Changelog.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scratch.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomClass\Abilities\Guard Abilities" />
+    <Folder Include="CustomClass\Abilities\Scientist Abilties" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\website-backend\Kognity.DB\Kognity.DB.csproj">
+      <Project>{47143fcb-c12a-4970-9500-35f24c0c1d71}</Project>
+      <Name>Kognity.DB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
